@@ -78,3 +78,5 @@ textSize(25);
 textAlign(CENTER, TOP);
 fill(0, 0, 0);
 text("Time is " + (hour() % 12 || 12)/*24hto12h*/ + ":" + minute(), 80, 20);
+
+Khan Academy Project link = https://www.khanacademy.org/computer-programming/clock-project/5348730760904704
