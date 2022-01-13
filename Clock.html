@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Processing.JS inside Webpages: Template</title>
+</head>
+
+<body>
+        <!--This draws the Canvas on the webpage -->
+        <canvas id="mycanvas"></canvas>
+    </p>
+</body>
+
+
+<script src="https://cdn.jsdelivr.net/processing.js/1.4.8/processing.min.js"></script>
+
+<script>
+    var sketchProc = function(processingInstance) {
+        with(processingInstance) {
+            size(500, 500);
+            frameRate(30);
+
+
+            //canvas size width = 500,,, height = 500...
+            //Clock Project 
+
+            draw = function() {
+                background(73, 84, 173);
+                // convert time to degrees
+                var hr = hour() * (360 / 12);
+                var mn = minute() * (360 / 60);
+                var sec = second() * (360 / 60);
+
+                // store default configuration 
+                pushMatrix();
+
+                // re-align for clock face (center)
+                translate(250, 250);
+                rotate(-90);
+
+                //clock face
+                fill(139, 150, 150);
+                stroke(87, 237, 76);
+                strokeWeight(5);
+                ellipse(0, 0, 400, 400);
+
+                //hour hand
+                strokeWeight(9);
+                stroke(0, 0, 0);
+                rotate(hr);
+                line(0, 0, 80, 0);
+                rotate(-hr); // hour hand end
+
+                //minute hand
+                strokeWeight(9);
+                stroke(89, 89, 89);
+                rotate(mn);
+                line(0, 0, 135, 10);
+                rotate(-mn); //minute hand end 
+
+                //second hand
+                strokeWeight(5);
+                stroke(255, 10, 10);
+                rotate(sec);
+                line(0, 0, 144, 0);
+                rotate(-sec); //second hand end
+
+                // restore default alignment
+                popMatrix();
+
+                //Numbers in face
+                fill(255, 204, 0);
+                textSize(37);
+                text("12", 251, 54);
+                text("9", 76, 230);
+                text("3", 425, 230);
+                text("6", 251, 395);
+
+                //points in face 
+                strokeWeight(20);
+                stroke(255, 242, 0);
+                point(339, 106); //1
+                point(398, 175); //2
+                point(398, 332); //4
+                point(339, 391); //5
+                point(154, 106); //11
+                point(98, 175); //10
+                point(98, 332); //8
+                point(154, 391); //7
+
+                //point above clock hands
+                strokeWeight(15);
+                stroke(0);
+                point(250, 250);
+
+                //Digital Clock
+                textSize(25);
+                textAlign(CENTER, TOP);
+                fill(0, 0, 0);
+                var number = minute();
+                var string = String(number).padStart(2, "0"); //to add zero when time is 11:1
+                text("Time is " + (hour() % 12 || 12) /*24hto12h*/ + ":" + string, 80, 20);
+
+
+            };
+
+        }
+    };
+
+    // Get the canvas that Processing-js will use
+    var canvas = document.getElementById("mycanvas");
+    // Pass the function sketchProc (defined in myCode.js) to Processing's constructor.
+    var processingInstance = new Processing(canvas, sketchProc);
+</script>
+
+</html>
