@@ -1,5 +1,26 @@
-//canvas size width = 500,,, height = 500...
-//Clock Project 
+<!DOCTYPE html>
+<html> 
+ <head>
+    <title>Clock with Processing.JS</title> 
+</head>
+ <body>
+    <p align="center"> 
+	<!--This draws the Canvas on the webpage -->
+      <canvas id="mycanvas"></canvas> 
+    </p>
+ </body>
+ 
+ <script src="https://cdn.jsdelivr.net/processing.js/1.4.8/processing.min.js"></script> 
+ 
+ <script>
+    var sketchProc = function(processingInstance) {
+     with (processingInstance) {
+        size(500, 500); 
+        frameRate(30);
+        
+        // ProgramCodeGoesHere
+        //canvas size width = 500,,, height = 500...
+        //Clock Project 
 
 draw = function() {
     background(73, 84, 173);
@@ -80,3 +101,13 @@ draw = function() {
     
     
 };
+
+    }};
+
+    // Get the canvas that Processing-js will use
+    var canvas = document.getElementById("mycanvas"); 
+    // Pass the function sketchProc (defined in myCode.js) to Processing's constructor.
+    var processingInstance = new Processing(canvas, sketchProc); 
+ </script>
+
+</html>
